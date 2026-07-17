@@ -1,0 +1,13 @@
+body {
+    background-color: #f3ede2 !important;
+}
+
+/* Smoothly prepare the image for movement */
+.hover-lift img {
+  transition: transform 0.3s ease;
+}
+
+/* Move the image up by 8 pixels on hover */
+.hover-lift:hover img {
+  transform: translateY(-8px);
+}
