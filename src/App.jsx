@@ -30,7 +30,7 @@ export default function App() {
     </Switch>
 
     {/* footer */}
-    <footer className="text-black text-center py-1">
+    <footer className="bg-dark text-white text-center py-1 small">
       <div className="container">
         <p>&copy; 2026 OMO. All rights reserved.</p>
       </div>

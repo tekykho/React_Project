@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Ceramic Cup",
+        "price": 29.99,
+        "images": "/images/ceramic_cup.png"
+    },
+    {
+        "id": 2,
+        "name": "Coffee Cup",
+        "price": 9.99,
+        "images": "/images/coffee_cup.png"
+    },
+    {
+        "id": 3,
+        "name": "Glass Jug",
+        "price": 39.99,
+        "images": "/images/glass_jug.png"
+    },
+    {
+        "id": 4,
+        "name": "Porcelain Coffee Cup",
+        "price": 49.99,
+        "images": "/images/porcelain_coffeeCup.png"
+    }
+]

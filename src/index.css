@@ -11,3 +11,13 @@ body {
 .hover-lift:hover img {
   transform: translateY(-8px);
 }
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.blink-badge {
+  animation: blinker 1.2s linear infinite;
+}
