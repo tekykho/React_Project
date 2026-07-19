@@ -1,7 +1,26 @@
-import { Formik, Field, Form, FieldArray } from 'formik';
+import { Formik, Field, Form, FieldArray, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
+import { useLocation } from 'wouter';
+
+const validationSchema = Yup.object({
+    name: Yup.string().required("Name is required").min(3, "Name must be at least 3 characters"),
+    email: Yup.string().email("Invalid email address").required("Email is required"),
+    password: Yup.string().required("Pass is required")
+        .min(8, "Password must be at least 8 characters long")
+        .matches(/[A-Za-z]/, "Password must contain at least one letter")
+        .matches(/[0-9]/, "Password must contain at least one number"),
+    confirmPassword: Yup.string().oneOf([
+        Yup.ref("password"),
+        null
+    ], "The password must be matched").required("Please confirm your password")
+})
 
 export default function RegisterPage() {
 
+    // To return to home location after submitted Registration
+    const [, setLocation] = useLocation();
+
+    // the checkbox database
     const marketingPreferences = [
         {
             "id": 1,
@@ -17,6 +36,7 @@ export default function RegisterPage() {
         }
     ]
 
+    // the initial values array to provide the default values on the form
     const initialValues = {
         "name": "",
         "email": "",
@@ -26,19 +46,29 @@ export default function RegisterPage() {
         "salutation": "Mr"
     }
 
+    // hander submit button
     const handleSubmit = (values, formikHelpers) => {
         formikHelpers.setSubmitting(true);
         console.log(values)
-        setTimeout(function(){
+        setTimeout(function () {
             console.log("The form has submitted");
             formikHelpers.setSubmitting(false);
+
+            const isSubmiitedProperly = true;
+            
+            if (isSubmiitedProperly) {
+                formikHelpers.resetForm();
+                            setLocation("/");
+            } else {
+                console.error("Form submission failed. Please try again");
+            }
         }, 3000)
     }
 
     return <>
         <div className="container">
             <h1>Register</h1>
-            <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+            <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={validationSchema}>
                 {
                     (formik) => (
                         <Form>
@@ -53,7 +83,9 @@ export default function RegisterPage() {
                                     className="form-control"
                                     name="name"
                                 />
+                                <ErrorMessage name='name' component="div" className="text-danger" />
                             </div>
+
                             {/* Input Email */}
                             <div className="mb-3">
                                 <label htmlFor="email"
@@ -65,7 +97,9 @@ export default function RegisterPage() {
                                     className="form-control"
                                     name="email"
                                 />
+                                <ErrorMessage name='email' component="div" className="text-danger" />
                             </div>
+
                             {/* Input Phone */}
                             <div className="mb-3">
                                 <label htmlFor="phone"
@@ -77,7 +111,9 @@ export default function RegisterPage() {
                                     className="form-control"
                                     name="phone"
                                 />
+                                <ErrorMessage name='phone' component="div" className="text-danger" />
                             </div>
+
                             {/* Input Password */}
                             <div className="mb-3">
                                 <label htmlFor="password"
@@ -89,7 +125,9 @@ export default function RegisterPage() {
                                     className="form-control"
                                     name="password"
                                 />
+                                <ErrorMessage name='password' component="div" className="text-danger" />
                             </div>
+
                             {/* Input Confirmed Password */}
                             <div className="mb-3">
                                 <label htmlFor="confirmPassword"
@@ -101,6 +139,7 @@ export default function RegisterPage() {
                                     className="form-control"
                                     name="confirmPassword"
                                 />
+                                <ErrorMessage name='confirmPassword' component="div" className="text-danger" />
                             </div>
                             {/* Input Salutation */}
                             <div className="mb-3">
@@ -159,7 +198,7 @@ export default function RegisterPage() {
                                                 className="form-check-input"
                                                 id={`marketing-${p.id}`}
                                             />
-                                            <label className="form-check-lable" 
+                                            <label className="form-check-lable"
                                                 htmlFor={`marketing-${p.id}`}>
                                                 {p.name}
                                             </label>
@@ -170,18 +209,18 @@ export default function RegisterPage() {
                             {/* Input Country */}
                             <div className="mb-3">
                                 <label htmlFor="country" className="form-label" >
-                                Country
+                                    Country
                                 </label>
                                 <Field as="select"
                                     className="form-select"
                                     id="country"
                                     name="country"
                                 >
-                                <option value="">Select Country</option>
-                                <option value="sg">Singapore</option>
-                                <option value="my">Malaysia</option>
-                                <option value="in">India</option>
-                                <option value="th">Thailand</option>
+                                    <option value="">Select Country</option>
+                                    <option value="sg">Singapore</option>
+                                    <option value="my">Malaysia</option>
+                                    <option value="in">India</option>
+                                    <option value="th">Thailand</option>
                                 </Field>
 
                             </div>
