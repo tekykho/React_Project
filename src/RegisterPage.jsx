@@ -1,6 +1,7 @@
 import { Formik, Field, Form, FieldArray, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useLocation } from 'wouter';
+import { useFlashMessage } from './FlashMsgStore';
 
 const validationSchema = Yup.object({
     name: Yup.string().required("Name is required").min(3, "Name must be at least 3 characters"),
@@ -19,6 +20,7 @@ export default function RegisterPage() {
 
     // To return to home location after submitted Registration
     const [, setLocation] = useLocation();
+    const { showMessage } = useFlashMessage();
 
     // the checkbox database
     const marketingPreferences = [
@@ -55,10 +57,11 @@ export default function RegisterPage() {
             formikHelpers.setSubmitting(false);
 
             const isSubmiitedProperly = true;
-            
+
             if (isSubmiitedProperly) {
                 formikHelpers.resetForm();
-                            setLocation("/");
+                showMessage("You have signed up successfully", "success")
+                setLocation("/");
             } else {
                 console.error("Form submission failed. Please try again");
             }
@@ -135,7 +138,7 @@ export default function RegisterPage() {
                                     Confirm Password:
                                 </label>
                                 <Field type="password"
-                                    id="password"
+                                    id="confirmPassword"
                                     className="form-control"
                                     name="confirmPassword"
                                 />

@@ -1,7 +1,7 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import ProductCard from "./ProductCard";
 import Navbar from './Navbar';
-
+import "./App.css";
 // import pages
 import HomePage from './Homepage';
 import ProductPage from './ProductPage';
@@ -12,10 +12,14 @@ import LoginPage from './LoginPage';
 // import wouter
 import { Route, Switch } from 'wouter'
 
+import { useFlashMessage } from './FlashMsgStore';
+import FlashMessageDisplay from './FlashMsgDisplay';
 
 export default function App() {
 
   return <>
+
+    <FlashMessageDisplay />
 
     <Navbar />
 
