@@ -2,13 +2,13 @@ import { atom, useAtom } from "jotai";
 
 const flashMessageAtom = atom({
     "message": "",
-    "type": "Info"
+    "type": "primary"
 })
 
 export const useFlashMessage = () => {
     const [flashMessage, setFlashMessage] = useAtom(flashMessageAtom);
     
-    const showMessage = (message, type="info") => {
+    const showMessage = (message, type="primary") => {
         setFlashMessage({
             message, type
         });
@@ -18,7 +18,7 @@ export const useFlashMessage = () => {
     const clearMessage = () => {
         setFlashMessage({
             "message": "",
-            "type": "info"
+            "type": "primary"
         })
     }
 

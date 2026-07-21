@@ -1,8 +1,11 @@
 import ProductCard from "./ProductCard";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useCart } from "./CartStore";
 
 export default function HomePage() {
+
+    const { addToCart} = useCart();
 
     const [products, setProducts] = useState([])
 
@@ -22,6 +25,11 @@ export default function HomePage() {
                 name={p.name}
                 price={p.price}
                 images={p.images}
+                onAddToCart={()=> {
+                    addToCart(p);
+                    alert("Homepage - added to cart");
+                    console.log(p);
+                }}
             />
         </div>
         )

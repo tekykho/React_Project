@@ -1,18 +1,20 @@
 import ProductCard from "./ProductCard"
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useCart } from "./CartStore";
 
 export default function ProductPage() {
+    const { addToCart } = useCart();
 
-     const [products, setProducts] = useState([])
-    
-     useEffect(function() {
+    const [products, setProducts] = useState([])
+
+    useEffect(function () {
         async function fetchData() {
             const response = await axios.get("products.json");
             setProducts(response.data);
         }
         fetchData();
-     }, [])
+    }, [])
 
     return <>
         <div className="container my-5">
@@ -27,6 +29,11 @@ export default function ProductPage() {
                                     name={p.name}
                                     price={p.price}
                                     images={p.images}
+                                    onAddToCart={() => {
+                 ;                       addToCart(p);
+                                        alert("added to cart");
+                                        console.log(p)
+                                    }}
                                 />
                             </div>
                         )

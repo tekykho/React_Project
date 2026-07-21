@@ -5,8 +5,9 @@ import "./App.css";
 // import pages
 import HomePage from './Homepage';
 import ProductPage from './ProductPage';
-import ProfilePage from './ProfilePage';
 import RegisterPage from './RegisterPage';
+import ShoppingCart from './ShoppingCart';
+import ProfilePage from './ProfilePage';
 import LoginPage from './LoginPage';
 
 // import wouter
@@ -23,11 +24,12 @@ export default function App() {
 
     <Navbar />
 
-    {/* <Switch> screen changes depending on the url */}
+    {/* Switch screen changes depending on the url */}
     <Switch>
       <Route path="/" component={HomePage} />
       <Route path="/products" component={ProductPage} />
       <Route path="/register" component={RegisterPage} />
+      <Route path="/cart" component={ShoppingCart} />
       <Route path="/profile" component={ProfilePage} />
       <Route path="/login" component={LoginPage} />
 
