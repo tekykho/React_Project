@@ -2,10 +2,13 @@ import ProductCard from "./ProductCard";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useCart } from "./CartStore";
+import { Link } from "wouter";
+import { useFlashMessage } from "./FlashMsgStore";
 
 export default function HomePage() {
 
-    const { addToCart} = useCart();
+    const { addToCart } = useCart();
+    const { showMessage } = useFlashMessage();
 
     const [products, setProducts] = useState([])
 
@@ -25,10 +28,11 @@ export default function HomePage() {
                 name={p.name}
                 price={p.price}
                 images={p.images}
-                onAddToCart={()=> {
+                onAddToCart={() => {
                     addToCart(p);
-                    alert("Homepage - added to cart");
-                    console.log(p);
+                    showMessage("Product added to Cart", "success");
+                    // alert("Homepage - added to cart");
+                    // console.log(p);
                 }}
             />
         </div>
@@ -42,7 +46,7 @@ export default function HomePage() {
                 <div className="container">
                     <h1 className="display-4">Welcome to OMO (HANDMADE CRAFTS)</h1>
                     <p className="lead">Objects that speak softly</p>
-                    <a href="#" className="btn btn-light btn-lg">Shop Now</a>
+                    <Link href="/products" className="btn btn-light btn-lg">Shop Now</Link>
                 </div>
             </header>
 

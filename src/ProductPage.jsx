@@ -2,9 +2,11 @@ import ProductCard from "./ProductCard"
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useCart } from "./CartStore";
+import { useFlashMessage} from "./FlashMsgStore";
 
 export default function ProductPage() {
     const { addToCart } = useCart();
+    const { showMessage } = useFlashMessage();
 
     const [products, setProducts] = useState([])
 
@@ -30,9 +32,10 @@ export default function ProductPage() {
                                     price={p.price}
                                     images={p.images}
                                     onAddToCart={() => {
-                 ;                       addToCart(p);
-                                        alert("added to cart");
-                                        console.log(p)
+                                        addToCart(p);
+                                        showMessage("Product added to Cart", "success");
+                                        // alert("added to cart");
+                                        // console.log(p);
                                     }}
                                 />
                             </div>

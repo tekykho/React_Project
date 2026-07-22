@@ -8,9 +8,9 @@ export default function Navbar() {
 
     return <>
         {/* Navbar */}
-        <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: '#f3ede2' }}>
+        <nav className="navbar navbar-expand-lg navbar-light sticky-top shadow-sm" style={{ backgroundColor: '#f3ede2' }}>
             <div className="container">
-                <a className="navbar-brand fw-bold text-uppercase" href="#" style={{ letterSpacing: '1px' }}>
+                <Link className="navbar-brand fw-bold text-uppercase" href="/" style={{ letterSpacing: '1px' }}>
                     <img
                         src="/images/omo_logo.png"
                         alt="OMO Logo"
@@ -18,7 +18,7 @@ export default function Navbar() {
                         height="30"
                         className="d-inline-block align-text-top me-2"
                     />
-                    OMO</a>
+                    OMO</Link>
                 <button
                     className="navbar-toggler"
                     type="button"

@@ -69,8 +69,38 @@ export const useCart = () => {
 
     }
 
+    const removeFromCart = (item) => {
+        const indexToDelete = cart.findIndex( i => i.product_id === item.product_id);
+
+        if (indexToDelete > -1) {
+            // cloned the array and modify the cloned
+            const cloned = cart.toSpliced(indexToDelete, 1);
+            // replaced the clone into atom
+            setCart(cloned);
+        }
+    }
+
+    const modifyQuantity = (item, newQuantity) => {
+        if (newQuantity <=0) {
+            return;
+        }
+        // find the index of the item and tweak the quantity
+        const indexToModify = cart.findIndex(i => i.product_id === item.product_id);
+
+        // clone the cart item
+        const modifyCartItem = {...cart[indexToModify]};
+
+        //modify the copy of the cart item
+        modifyCartItem.quantity = newQuantity;
+
+        // clone the cart array and update the cart array
+        const clonedCart = cart.with(indexToModify, modifyCartItem);
+
+        // replace the cart atom with the clone
+        setCart(clonedCart);
+    }
 
     return {
-        cart, getCartTotal, addToCart
+        cart, getCartTotal, addToCart, removeFromCart, modifyQuantity
     }
 }

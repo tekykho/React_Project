@@ -25,7 +25,7 @@ body {
 .flash {
     position: fixed;
     width: calc(99vw - 20px);
-    z-index: 100;
+    z-index: 1090;
     top: 5px;
     left: 10px;
     animation-name: fadeInWaitFadeOut;
