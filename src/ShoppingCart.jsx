@@ -116,10 +116,10 @@ export default function ShoppingCart() {
 
             {/* Bottom Checkout Footer Bar */}
             <div className="card shadow-sm p-3 d-flex flex-row justify-content-between align-items-center mb-3">
-                <div>
+                {/* <div>
                     <input type="checkbox" className="form-check-input me-2" id="clearAll" />
                     <label htmlFor="clearAll" className="form-check-label me-3">Select All</label>
-                </div>
+                </div> */}
                 <div className="d-flex align-items-center">
                     <span className="me-3 text-muted">
                         {/*  acc = accumulator, curr = current, 0 = initial value */}
