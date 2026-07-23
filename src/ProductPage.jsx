@@ -26,7 +26,7 @@ export default function ProductPage() {
                     products.map(function (p) {
                         return (
 
-                            <div key={p.id} className="col-md-3 mb-4" key={p.id}>
+                            <div className="col-md-3 mb-4" key={p.id}>
                                 <ProductCard
                                     name={p.name}
                                     price={p.price}
